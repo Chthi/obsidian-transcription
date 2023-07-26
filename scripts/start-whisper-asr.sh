@@ -1,2 +1,2 @@
 #!/bin/bash
-docker run -p 9000:9000 -e ASR_MODEL=tiny.en onerahmet/openai-whisper-asr-webservice:latest
+docker run --name whisper_cpu_en --rm -p 9002:9000 -e ASR_MODEL=tiny.en -v //c/tmp/whisper:/root/.cache/whisper onerahmet/openai-whisper-asr-webservice:latest

@@ -13,7 +13,8 @@ interface TranscriptionSettings {
 	debug: boolean;
 	dev: boolean;
 	scribeToken: string;
-	transcription_engine: string
+	transcription_engine: string;
+	language: string
 }
 
 const DEFAULT_SETTINGS: TranscriptionSettings = {
@@ -26,7 +27,8 @@ const DEFAULT_SETTINGS: TranscriptionSettings = {
 	debug: false,
 	dev: false,
 	scribeToken: '',
-	transcription_engine: 'scribe'
+	transcription_engine: 'scribe',
+	language: 'en'
 }
 
 export default class Transcription extends Plugin {
@@ -301,6 +303,18 @@ class TranscriptionSettingTab extends PluginSettingTab {
 					await this.plugin.saveSettings();
 				}));
 
+		new Setting(containerEl)
+		.setName('Output language')
+		.setDesc('Whisper ASR language request.')
+		.setClass('whisper-asr-settings')
+		.addText(text => text
+			.setPlaceholder(DEFAULT_SETTINGS.language)
+			.setValue(this.plugin.settings.language)
+			.onChange(async (value) => {
+				this.plugin.settings.language = value;
+				await this.plugin.saveSettings();
+			}));
+	
 		new Setting(containerEl)
 			.setName('Advanced Settings')
 			.setHeading()

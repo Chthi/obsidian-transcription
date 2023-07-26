@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run --name whisper -it --rm --gpus all -p 9000:9000 -e ASR_MODEL=medium -e ASR_ENGINE=openai_whisper -v //c/tmp/whisper:/root/.cache/whisper onerahmet/openai-whisper-asr-webservice:latest-gpu

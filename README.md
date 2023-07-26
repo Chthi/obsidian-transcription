@@ -18,6 +18,22 @@ We're excited to announce the launch of [Scribe](https://scribe.gambitengine.com
 
 ## How to use
 
+### Whisper
+Create and initialise the container for the model. The medium model is ~3G and can take some time before being downloaded the first time.
+```
+./scripts/init-whisper-asr-multilingual.sh
+```
+Then the service can be manually started/stoped with `docker start whisper` and `docker stop whisper`.
+
+It could also be automatically started, but the ~5GB RAM used by the model might slow down the system.
+For example in your `.bashrc` on Linux:
+```
+echo "
+docker start whisper" >> ~/.bashrc
+```
+
+
+### GambitEngine Scribe
 1. Install the plugin
 2. Sign up for an account with [GambitEngine Scribe](https://scribe.gambitengine.com/)
 3. Copy the API key from the dashboard, and paste it into the settings of the plugin
